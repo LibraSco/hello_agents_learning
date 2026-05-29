@@ -1,12 +1,4 @@
 # /// OpenAICompatibleClient
-# requires-python = ">=X.XX" TODO: Update this to the minimum Python version you want to support
-# dependencies = [
-#   TODO: Add any dependencies your script requires
-# ]
-# ///
-
-# TODO: Update the main function to your needs or remove it.
-
 from openai import OpenAI
 class OpenAICompatibleClient:
     def __init__(self,model:str,api_key:str,base_url:str):
