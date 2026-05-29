@@ -49,3 +49,57 @@ BASE_URL = "https://api-inference.modelscope.cn/v1/"
 MODEL_ID = "deepseek-ai/DeepSeek-V4-Flash" #这里我用的是deepseek的模型
 os.environ['TAVILY_API_KEY'] = "YOUR_TAVILY_API_KEY"
 ```
+
+还有在运行main.py文件前，**最好先测试一下各个api的连通性**，下面是官方给的测试代码：
+```py
+# 测试天气 API
+import requests
+response = requests.get("https://wttr.in/Beijing?format=j1")
+print("天气API状态:", response.status_code)
+
+# 测试 Tavily API
+from tavily import TavilyClient
+tavily = TavilyClient(api_key="your_tavily_key")
+try:
+    result = tavily.search("test", search_depth="basic")
+    print("Tavily API 连接成功")
+except Exception as e:
+    print("Tavily API 错误:", e)
+
+# 测试 LLM API - AIHubmix
+from openai import OpenAI
+client = OpenAI(
+    api_key="your_aihubmix_api_key",
+    base_url="https://aihubmix.com/v1"
+)
+try:
+    response = client.chat.completions.create(
+        model="coding-glm-4.7-free",
+        messages=[{"role": "user", "content": "Hello"}],
+        max_tokens=10
+    )
+    print("LLM API 连接成功:", response.choices[0].message.content)
+except Exception as e:
+    print("LLM API 错误:", e)
+
+# 测试 LLM API - ModelScope（如果您使用的是 ModelScope，请取消注释并替换配置）
+# from openai import OpenAI
+# client = OpenAI(
+#     api_key="your_modelscope_api_key",
+#     base_url="https://api-inference.modelscope.cn/v1/"
+# )
+# try:
+#     response = client.chat.completions.create(
+#         model="Qwen/Qwen2.5-72B-Instruct",
+#         messages=[{"role": "user", "content": "Hello"}],
+#         max_tokens=10
+#     )
+#     print("LLM API 连接成功:", response.choices[0].message.content)
+# except Exception as e:
+#     print("LLM API 错误:", e)
+```
+如果测试了都没有问题，那运行程序大概率也是没有问题的
+
+下面是我运行后的结果：
+
+<img width="1443" height="836" alt="屏幕截图 2026-05-27 201448" src="https://github.com/user-attachments/assets/4c79d3f5-14ce-4d58-bb91-8e2860266707" />
