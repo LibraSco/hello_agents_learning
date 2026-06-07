@@ -51,7 +51,8 @@ class HelloAgentsLLM:
         except Exception as e:
             print(f"❌调用LLM API时发生错误:{e}")
             return None
-        
+             
+#这里是测试语句,用来测试LLM能不能正常调用    
 if __name__ == '__main__':
      try:
           llmClient = HelloAgentsLLM()
